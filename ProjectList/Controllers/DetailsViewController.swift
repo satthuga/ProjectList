@@ -152,7 +152,7 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
                     
                     // add photos to viewcontroller
                     for photo in photos {
-                        self.addImage(photo: photo)
+                        self.addImage(photo: photo, url: photo.url)
                     }
                 }
             } catch {
@@ -165,10 +165,11 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
  
 
     
-    func addImage(photo: Photo){
+    func addImage(photo: Photo, url: String){
         DispatchQueue.main.async {
             // photoView
             let photoView = PhotoView(frame: CGRect(x: photo.frame.x, y: photo.frame.y, width: photo.frame.width, height: photo.frame.height+40))
+            photoView.url = url
             self.containView.addSubview(photoView)
             
             photoView.isUserInteractionEnabled = true
@@ -200,7 +201,7 @@ class DetailsViewController: UIViewController, UIImagePickerControllerDelegate, 
         newPhoto.frame.y = Double(self.containView.center.y - image.size.height/2)
         
         photos.append(newPhoto)
-        addImage(photo: newPhoto)
+        addImage(photo: newPhoto, url: newPhoto.url)
         dismiss(animated: true)
     }
 

@@ -165,6 +165,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         
         let delete = UIContextualAction(style: .normal, title: "Delete") { (action, view, completionHandler) in
               // delete project
+            projects.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [IndexPath(row: indexPath.row, section: 0)], with: .fade)
             completionHandler(true)
             }
         

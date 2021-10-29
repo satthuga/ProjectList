@@ -12,6 +12,7 @@ class PhotoView: UIView {
     var button : UIButton?
     var imageView : UIImageView?
     var isTouch = false
+    var url  = ""
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -87,6 +88,15 @@ class PhotoView: UIView {
     
     @objc func didTapButton() {
         self.removeFromSuperview()
+        
+        for (index, value) in photos.enumerated() {
+            if value.url == self.url {
+                photos.remove(at: index)
+                break
+            }
+        }
+        
+       
     }
     
         required init?(coder: NSCoder) {
