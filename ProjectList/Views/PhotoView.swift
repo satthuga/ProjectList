@@ -36,7 +36,7 @@ class PhotoView: UIView {
         imageView!.addGestureRecognizer(onTapImageViewGesture)
         
         let pinchGesture = UIPinchGestureRecognizer(target: self, action: #selector(pinch(sender:)))
-        imageView!.addGestureRecognizer(pinchGesture)
+        self.addGestureRecognizer(pinchGesture)
         
         let rotationGesture = UIRotationGestureRecognizer(target: self, action: #selector(rotatePiece(_:)))
         self.addGestureRecognizer(rotationGesture)
@@ -66,8 +66,8 @@ class PhotoView: UIView {
             view.transform = view.transform.scaledBy(x: sender.scale, y: sender.scale)
             
         }
-    
-        button?.center.y = view.center.y - view.frame.size.height*sender.scale/2 - 10 - 15
+        button!.transform =  button!.transform.scaledBy(x: 1/(sender.scale), y: 1/(sender.scale))
+        button?.center.y -=  25*(1-sender.scale)
         
         sender.scale = 1
   
